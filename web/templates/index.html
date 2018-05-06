@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-12">
+            <br>
+            <br>
+
+            <form class="form-inline" name="search" action="{{ url_for('getSearch', page=0)}}" method="GET", id="search">
+                <input class="form-control mb-4 mr-sm-2 mb-sm-0" type="text" name="search" placeholder="{%if search%}{{search}}{%endif%}">
+
+                <button class="btn btn-primary" type="submit" value="Submit">Search</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col">
+        <br><br>
+
+        <table style="margin-left: 15px;"><tbody>
+        {% for article in articles %}
+            <tr>
+                <td><a href="/article/{{article.id}}">{{article.title}} </a><br>
+                {{article.summary(50)}}... <br></td>
+                <td>{{', '.join(article.get_most_common())}}</td>
+                <td>{{article.date}} </td>
+
+            </tr>
+         {% endfor %}
+        </tbody></table>
+
+
+        </div>
+    </div>
+
+    <br>
+
+
+
+    <br>
+    <div class="row">
+        <div class="col-4">
+
+            {% if page > 0 %}
+                 {% if search %}
+                    <b><a href="{{ url_for('getSearch', page=page-1, search=search)}}">Previous Page</a></b>
+                {% else %}
+                    <b><a href="{{ url_for('getNews', page=page-1)}}">Previous Page</a></b>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-4">
+            <center>
+            {{start}}-{{end}} of {{count}}
+            </center>
+        </div>
+        <div class="col-4 text-right">
+            {% if count > end %}
+
+            {% if search %}
+                    <b><a href="{{ url_for('getSearch', page=page+1, search=search)}}">Next Page</a></b>
+                {% else %}
+                    <b><a href="{{ url_for('getNews', page=page+1)}}">Next Page</a></b>
+                {% endif %}
+            {%endif%}
+        </div>
+    </div>
+
+    <br><br>
+</div>
+</body>
+</html>
