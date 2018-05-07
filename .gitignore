@@ -1,0 +1,8 @@
+.idea/*
+scraper/.idea/*
+scraper/.ipynb_checkpoints/*
+scraper/libs/__pycache__/*
+
+web/.idea/*
+web/.ipynb_checkpoints/*
+web/libs/__pycache__/*

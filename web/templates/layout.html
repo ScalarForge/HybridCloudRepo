@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-12">
+            <br>
+            <br>
+
+            <form class="form-inline" name="search" action="{{ url_for('get_search', page=0)}}" method="GET", id="search">
+                <input class="form-control mb-4 mr-sm-2 mb-sm-0" type="text" name="search" placeholder="{%if search%}{{search}}{%endif%}">
+
+                <button class="btn btn-primary" type="submit" value="Submit">Search</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+
+    {% block body %}{% endblock %}
+
+</div>
+</body>
+</html>
