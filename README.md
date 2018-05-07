@@ -18,13 +18,13 @@ The entirety of the web scraper resides in this folder.
 
 To run the web scraper
 
-'''
+```
 python scraper.py
-'''
+```
 
 Without arguments, the output will look like:
 
-'''
+```
 usage: scraper.py [-h] [-c CONFIG]
 
 Scrape NPR website for news
@@ -33,13 +33,13 @@ optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
                         Configuration JSON
-'''
+```
 
 To run the scraper with a config file
 
-'''
+```
 python scraper.py -c config.json
-'''
+```
 
 As it's currently set up, a sqlite database will be created one level up, in the main folder.  This way, both the scraper and the web server will have access to it. 
 
@@ -50,8 +50,8 @@ The database created by the scraper is used in the web server.
 
 To start the web server, run 
 
-'''
+```
 python flaskNews.py
-'''
+```
 
 To modify what database the web server uses, modify the libs/sqlcreator.py file to match the one in the scraper. 
