@@ -11,15 +11,20 @@ from libs.article import Article
 
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 
-class NPRScraperFunctions:
+STOPWORDS = set(ENGLISH_STOP_WORDS)
+STOPWORDS.update(['said', 'says', 'thats', 'that', 'say', 'dont', 'hes', 'im', 'way'])
 
+class NPRScraperFunctions:
+ 
     @staticmethod
     def get_most_common(text):
+        global STOPWORDS
+        
         exclude = set(string.punctuation)
         text_nopunct = ''.join(ch for ch in text if ch not in exclude)
 
         words = text_nopunct.lower().split(" ")
-        words = [word for word in words if word not in ENGLISH_STOP_WORDS and len(word) > 1]
+        words = [word for word in words if word not in STOPWORDS and len(word) > 1]
 
         return [word for word, count in list(Counter(words).most_common(15))]
 
