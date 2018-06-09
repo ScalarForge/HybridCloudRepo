@@ -1,7 +1,4 @@
 {
-    "url_queue": "url_queue.pkl",
-    "urls_traversed": "urls_traversed.pkl",
-    
     "save_status" : true,
     "max_count": 1000
 }
