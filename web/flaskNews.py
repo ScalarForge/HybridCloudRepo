@@ -15,13 +15,20 @@ app.secret_key = '0823##*_OJKH*Gjjuu&&&55(*&(*&(7^%%'
 def get_article(id=None):
     if not id:
         return
+    engine = create_alchemy_engine()
+
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
     return render_template('article.html', article = [x for x in session.query(Article).filter(Article.id == id)][0])
 
 
 @app.route('/search/page_<page>/', methods=['GET', 'POST'])
 def get_search(page=0, search=None):
-    global session
+    engine = create_alchemy_engine()
+
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
     per_page = 10
     offset = int(page) * per_page
@@ -65,7 +72,10 @@ def get_search(page=0, search=None):
 @app.route('/page_<page>/')
 def get_news(page=0):
 
-    global session
+    engine = create_alchemy_engine()
+
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
     per_page = 10
     offset = int(page)*per_page
@@ -80,10 +90,7 @@ def get_news(page=0):
 
 
 if __name__ == '__main__':
-    engine = create_alchemy_engine()
 
-    Session = sessionmaker(bind=engine)
-    session = Session()
 
     app.debug = True
     app.run(host='localhost', port=8080)
