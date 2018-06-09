@@ -92,5 +92,5 @@ def get_news(page=0):
 if __name__ == '__main__':
 
 
-    app.debug = True
+    app.debug = False
     app.run(host='localhost', port=8080)
